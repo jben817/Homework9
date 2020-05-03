@@ -1,59 +1,60 @@
-const questions = [
-
-];
-
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
 
-function writeToFile(fileName, data) {
-}
 
-function init() {
-
-}
-
-init();
-
-
-const inquirer = require("inquirer");
-const fs = require("fs");
-const util = require("util");
-
-const writeFileAsync = util.promisify(fs.writeFile);
-
-function promptUser() {
+function askUser() {
   return inquirer.prompt([
     {
       type: "input",
-      name: "Project Title",
-      message: "Please add your Project Title?"
+      name: "project",
+      message: "Please add your Project Title."
     },
     {
       type: "input",
-      name: "location",
-      message: "Where are you from?"
+      name: "description",
+      message: "Please add a description of your project."
     },
     {
       type: "input",
-      name: "hobby",
-      message: "What is your favorite hobby?"
+      name: "table",
+      message: "Please add a table of contents for your project."
     },
     {
       type: "input",
-      name: "food",
-      message: "What is your favorite food?"
+      name: "installation",
+      message: "Please add instructions to make environment ready for program execution."
     },
     {
       type: "input",
-      name: "github",
-      message: "Enter your GitHub Username"
+      name: "usage",
+      message: "Please add instructions for use of project once installed"
     },
     {
       type: "input",
-      name: "linkedin",
-      message: "Enter your LinkedIn URL."
+      name: "license",
+      message: "Please add License for you project."
+    },
+    {
+      type: "input",
+      name: "contributing",
+      message: "Please outline contributing instructions"
+    },
+    {
+      type: "input",
+      name: "tests",
+      message: "Please add more data of code and technologies ran."
+    },
+    {
+      type: "input",
+      name: "questions",
+      message: "Please add/answer some frequently asked questions."
     }
   ]);
 }
 
+fs.writeFile("markDown.md", answers, function(err) {
+  if (err) {
+    throw err;
+  }
+});

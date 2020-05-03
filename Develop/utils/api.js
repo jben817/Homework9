@@ -1,26 +1,9 @@
+const inquirer = require("inquirer");
+const axios = require("axios");
+
 const api = {
   getUser(username) {
-
-  }
-};
-
-module.exports = api;
-
-const fs = require("fs");
-const axios = require("axios");
-const inquirer = require("inquirer");
-
-function writeToFile(fileName, data) {
-}
-
-function init() {
-
-}
-
-init();
-
-
-inquirer
+    inquirer
   .prompt({
     message: "Please enter your GitHub username:",
     name: "username"
@@ -36,12 +19,54 @@ inquirer
   
       const gitEmailStr = gitEmail.join("\n");
 
-      fs.writeFile("index.html", gitEmailStr, function(err) {
+      fs.writeFile("markDown.md", gitEmailStr, function(err) {
         if (err) {
           throw err;
         }
+        
 
-        console.log(`Public ${gitEmail.length} email`);
       });
     });
   });
+
+
+
+  }
+};
+
+const avatar = {
+  getUserAvatar(useravatar) {
+    inquirer
+  .prompt({
+    message: "Please enter your GitHub username:",
+    name: "username"
+  })
+  .then(function({ username }) {
+    const queryUrlAva = `https://api.github.com/users/${username}.png`;
+
+    axios.get(queryUrlAva).then(function(res) {
+      console.log(res);
+      const gitAvatar = res.data.map(function(avatar) {
+        return avatar.image;
+      });
+  
+      const gitAvatar = gitAvatar.join("\n");
+
+      fs.writeFile("markDown.md", gitAvatar, function(err) {
+        if (err) {
+          throw err;
+        }
+        
+
+      });
+    });
+  });
+
+
+
+  }
+};
+
+
+module.exports = api;
+
