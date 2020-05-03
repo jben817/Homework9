@@ -1,7 +1,8 @@
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
-
+const getInfo = require("Develop/utils/api.js");
+const readGen = require("Develop/utils/generateMarkdown.js");
 
 function askUser() {
   return inquirer.prompt([
