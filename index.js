@@ -1,11 +1,8 @@
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
-const getInfo = require("Develop/utils/api.js");
-const readGen = require("Develop/utils/generateMarkdown.js");
 
-function askUser() {
-  return inquirer.prompt([
+const questions = [
     {
       type: "input",
       name: "project",
@@ -51,11 +48,13 @@ function askUser() {
       name: "questions",
       message: "Please add/answer some frequently asked questions."
     }
-  ]);
+  ];
+
+function init() {
+  inquirer.prompt(questions) 
+  .then(response => {
+    fs.writeFileSync('markDown.md', JSON.stringify(response), '\n');
+  });
 }
 
-fs.writeFile("markDown.md", answers, function(err) {
-  if (err) {
-    throw err;
-  }
-});
+init();

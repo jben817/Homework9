@@ -19,7 +19,7 @@ const api = {
   
       const gitEmailStr = gitEmail.join("\n");
 
-      fs.writeFile("markDown.md", gitEmailStr, function(err) {
+      fs.appendFile("markDown.md", gitEmailStr, function(err) {
         if (err) {
           throw err;
         }
@@ -52,7 +52,7 @@ const avatar = {
   
       const gitAvatar = gitAvatar.join("\n");
 
-      fs.writeFile("markDown.md", gitAvatar, function(err) {
+      fs.appendFile("markDown.md", gitAvatar, function(err) {
         if (err) {
           throw err;
         }
