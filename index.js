@@ -53,7 +53,7 @@ const questions = [
 function init() {
   inquirer.prompt(questions) 
   .then(response => {
-    fs.writeFileSync('markDown.md', JSON.stringify(response), '\n');
+    fs.writeFileSync('markDown.md', JSON.stringify(response));
   });
 }
 
