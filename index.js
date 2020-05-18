@@ -1,9 +1,11 @@
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
+const generateMarkdown = require("./utils/generateMarkdown");
 
-const questions = [
-    {
+
+
+const questions = [{
       type: "input",
       name: "project",
       message: "Please add your Project Title."
@@ -47,14 +49,51 @@ const questions = [
       type: "input",
       name: "questions",
       message: "Please add/answer some frequently asked questions."
-    }
-  ];
+    },
+];
 
-function init() {
-  inquirer.prompt(questions) 
-  .then(response => {
-    fs.writeFileSync('markDown.md', JSON.stringify(response));
-  });
-}
+      function init() {
+  inquirer.prompt(questions,).then(response => {
+    fs.writeFileSync('README.md', generateMarkdown({response}));
+    promptUser()
+  })
+      }
+    
 
 init();
+//  with this uncommented it runs through second prompt
+
+const questionTwo = [
+  {
+  message: "Please enter your GitHub username:",
+  name: "username",
+  type: "input"
+}];
+
+  
+function promptUser() {
+  inquirer.prompt(questionTwo)
+  .then(function({ username }) {
+        const queryUrl = `https://api.github.com/users/${username}`;
+    
+        axios.get(queryUrl).then(function (res) {
+          console.log(res);
+    
+          const username = res.data.user;
+          const email = res.data.email;
+    
+          let document =
+          "Your username is" + username;
+          "Your email is" + email;
+      
+          fs.appendFileSync("README.md", document, function (err) {
+            if(err) {
+              throw err;
+              
+            }
+          });
+        })
+      })
+    
+      };
+       
