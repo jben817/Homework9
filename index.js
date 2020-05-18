@@ -54,7 +54,7 @@ const questions = [{
 
       function init() {
   inquirer.prompt(questions,).then(response => {
-    fs.writeFileSync('README.md', generateMarkdown({response}));
+    fs.writeFileSync('README.md', generateMarkdown(response));
     promptUser()
   })
       }
@@ -83,10 +83,10 @@ function promptUser() {
           const email = res.data.email;
     
           let document =
-          "Your username is" + username;
-          "Your email is" + email;
+          "Your username is:" + " " + username;
+          "Your email is:" + " " + email;
       
-          fs.appendFileSync("README.md", document, function (err) {
+          fs.appendFileSync("README.md", document + '\n', function (err) {
             if(err) {
               throw err;
               

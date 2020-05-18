@@ -24,11 +24,11 @@ ${data.questions}`
 
 }
 
-// promptUser()
+// getInfo()
 //   .then(function(userInput) {
 //     const markDown = generateMarkdown(data);
 
-//     return writeFileAsync("markDown.md", markDown);
+//     return writeFileAsync("README.md", markDown);
 //   })
 //   .then(function() {
 //     console.log("Created in readme");
@@ -37,4 +37,5 @@ ${data.questions}`
 //     console.log(err);
 //   });
 
-  module.exports = generateMarkdown;
+
+module.exports = generateMarkdown;
