@@ -1,5 +1,4 @@
 function generateMarkdown(data) {
-
   return `
 ## Project Title
 ${data.project}
@@ -18,7 +17,12 @@ ${data.contributing}
 ## Tests
 ${data.tests}
 ## Questions
-${data.questions}`
+${data.questions}
+## User Email
+${data.useremail}
+## GitHub Username
+`
+
   
 
 

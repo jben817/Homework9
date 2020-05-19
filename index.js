@@ -31,25 +31,33 @@ const questions = [{
       message: "Please add instructions for use of project once installed"
     },
     {
-      type: "input",
+      type: "list",
       name: "license",
-      message: "Please add License for you project."
+      message: "Please add License for you project.",
+      choices: ["Apache", "MIT", "GPL", "LGPL"]
     },
     {
       type: "input",
       name: "contributing",
-      message: "Please outline contributing instructions"
+      message: "List contributers that helped with this project"
     },
     {
-      type: "input",
+      type: "list",
       name: "tests",
-      message: "Please add more data of code and technologies ran."
+      message: "Does this app use tests?",
+      choices: ["yes", "no"]
     },
     {
       type: "input",
       name: "questions",
       message: "Please add/answer some frequently asked questions."
     },
+
+    {
+      message: "Please enter your email:",
+      name: "useremail",
+      type: "input"
+    }
 ];
 
       function init() {
@@ -68,25 +76,23 @@ const questionTwo = [
   message: "Please enter your GitHub username:",
   name: "username",
   type: "input"
-}];
+}
+];
 
   
 function promptUser() {
   inquirer.prompt(questionTwo)
-  .then(function({ username }) {
+  .then(function( {username}) {
         const queryUrl = `https://api.github.com/users/${username}`;
     
         axios.get(queryUrl).then(function (res) {
-          console.log(res);
-    
-          const username = res.data.user;
-          const email = res.data.email;
-    
+            
+          const username = res.data.login;
+          
           let document =
           "Your username is:" + " " + username;
-          "Your email is:" + " " + email;
       
-          fs.appendFileSync("README.md", document + '\n', function (err) {
+          fs.appendFileSync("README.md", document, function (err) {
             if(err) {
               throw err;
               
