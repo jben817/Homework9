@@ -28,18 +28,6 @@ ${data.useremail}
 
 }
 
-// getInfo()
-//   .then(function(userInput) {
-//     const markDown = generateMarkdown(data);
-
-//     return writeFileAsync("README.md", markDown);
-//   })
-//   .then(function() {
-//     console.log("Created in readme");
-//   })
-//   .catch(function(err) {
-//     console.log(err);
-//   });
 
 
 module.exports = generateMarkdown;
